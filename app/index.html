@@ -55,8 +55,11 @@
           return response.text();
         })
         .then(body =>  {
-          console.log(body);
-        });
+          
+          document.getElementById('resultado').value = body;
+          //console.log(body);
+        })
+        .catch((error) => console.log(error));
     }
 
   </script>
@@ -64,16 +67,18 @@
     <div class="notification">
       <div class="field">
         <label class="label">Busca:</label>
+        <div class="field is-grouped">
         <div class="control">
           <input class="input" type="text" id="codigo" placeholder="Insira o termo de busca:">
         </div>
+        <div class="control">
+          <input class="input" type="text" id="resultado" placeholder="resultado" disabled>
+        </div>
+      </div>
       </div>
       <div class="field is-grouped">
         <div class="control">
-          <button onClick="busca1()" name="submit" id="submit" class="button is-link">Buscar 1</button>
-        </div>
-        <div class="control">
-          <button onClick="busca2()" class="button is-warning">Busca 2</button>
+          <button onClick="busca2()" name="submit" id="submit" class="button is-link">Busca 1</button>
         </div>
       </div>
     </div>

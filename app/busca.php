@@ -10,8 +10,8 @@ use Monolog\Handler\StreamHandler;
 //header('Content-Type: application/json; charset=utf-8');
 //"Access-Control-Allow-Origin" : "*", 
 //"Access-Control-Allow-Credentials" : true 
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Credentials : true");
+//header("Access-Control-Allow-Origin: *");
+//header("Access-Control-Allow-Credentials: true");
 //exit();
 $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
 
@@ -19,7 +19,8 @@ $log = new Logger('Debug');
 $log->pushHandler(new StreamHandler('../storage/debug.log', Logger::WARNING));
 
 // // add records to the log
-$log->warning(var_dump($_POST));
+//$log->warning(var_dump($_POST));
+echo $_POST['codigo'];
 
 //echo $_REQUEST[];
 // if ($contentType === "application/json") {
