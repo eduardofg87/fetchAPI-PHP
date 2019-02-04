@@ -1,0 +1,23 @@
+{
+    "name": "eduardofg87/fetchAPI-PHP",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Eduardo Figueiredo Gonçalves",
+            "email": "goncalves.ef@gmail.com"
+        }
+    ],
+    "require": {
+        "monolog/monolog": "^1.24"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    }
+}

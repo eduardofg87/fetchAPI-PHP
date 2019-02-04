@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>FetchAPI-PHP</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+
+<body>
+  <script>
+    function busca1() {
+      let requestObject = { codigo: document.getElementById('codigo').value };
+      console.log(requestObject);
+      fetch("busca.php", {
+        method: "POST",
+        //mode: 'cors', 
+        redirect: 'follow',
+        mode: "same-origin",
+        //mode:    'cors',
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(requestObject)
+      })
+        .then((response) => {
+          status = response.status;  // Get the HTTP status code
+          response_ok = response.ok; // Is response.status in the 200-range?
+          console.log("1st then");
+          return response.json();    // This returns a promise
+        })
+        .then((data) => {
+          console.log("2nd then");
+          console.log(data)
+          status = data.status;  // Get the HTTP status code
+          response_ok = data.ok; // Is response.status in the 200-range?
+        })
+        .catch((error) => console.log(error))
+    }
+
+    function busca2() {
+      let url = 'busca.php';
+      let formData = new FormData();
+      formData.append('codigo', document.getElementById('codigo').value);
+
+      fetch(url, {
+        method: 'POST',
+        body: formData
+      })
+        .then(response => {
+          return response.text();
+        })
+        .then(body =>  {
+          
+          document.getElementById('resultado').value = body;
+          //console.log(body);
+        })
+        .catch((error) => console.log(error));
+    }
+
+  </script>
+  <div class="container is-fluid">
+    <div class="notification">
+      <div class="field">
+        <label class="label">Busca:</label>
+        <div class="field is-grouped">
+        <div class="control">
+          <input class="input" type="text" id="codigo" placeholder="Insira o termo de busca:">
+        </div>
+        <div class="control">
+          <input class="input" type="text" id="resultado" placeholder="resultado" disabled>
+        </div>
+      </div>
+      </div>
+      <div class="field is-grouped">
+        <div class="control">
+          <button onClick="busca2()" name="submit" id="submit" class="button is-link">Busca 1</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
